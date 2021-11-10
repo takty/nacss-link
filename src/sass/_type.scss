@@ -36,20 +36,18 @@
 		&[data-nc-link-external]::after      { content: '\2794'; transform: rotate(-45deg); }
 
 		&[data-nc-link-file]::after {
-			content      : 'File';
+			content       : attr(data-nc-link-file);
+			text-transform: uppercase;
+
 			display      : inline-block;
 			margin-left  : 0.5em;
 			font-size    : 75%;
-			padding      : 0.2em 0.5em 0.15em;
-			border-radius: 0.4em;
+			padding      : 0.2em 0.5em 0.125em;
+			border-radius: 0.35em;
 			line-height  : 1;
 
 			color           : #fff;
 			background-color: #777;
 		}
-		&[data-nc-link-file = 'pdf']::after { content: 'PDF'; }
-		&[data-nc-link-file = 'doc']::after { content: 'DOC'; }
-		&[data-nc-link-file = 'xls']::after { content: 'XLS'; }
-		&[data-nc-link-file = 'ppt']::after { content: 'PPT'; }
 	}
 }

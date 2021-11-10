@@ -164,8 +164,8 @@ function getFileType(url, extTab) {
 		}
 		const p = url.lastIndexOf('.');
 		if (p !== -1) {
-			const ext = url.substring(p + 1);
-			return extTab[ext];
+			const ext = url.substring(p + 1).toLowerCase();
+			return extTab[ext] ?? null;
 		}
 	}
 	return null;
