@@ -13,18 +13,20 @@ function isUrlAnchor(url, a = null, outIsUp = null) {
 		const p = url.indexOf('#');
 		if (p !== -1) {
 			const id = url.substring(p + 1);
-			const t = document.getElementById(id);
-			if (t !== null) {
-				if (
-					p === 0 ||
-					url.substring(0, p) === location.href.replace(location.hash ? location.hash : '#', '')
-				) {
-					if (a && outIsUp) {
-						const from = a.getBoundingClientRect().top;
-						const to   = t.getBoundingClientRect().top;
-						if (to < from) outIsUp[0] = true;
+			if (id.length) {
+				const t = document.getElementById(id);
+				if (t !== null) {
+					if (
+						p === 0 ||
+						url.substring(0, p) === location.href.replace(location.hash ? location.hash : '#', '')
+					) {
+						if (a && outIsUp) {
+							const from = a.getBoundingClientRect().top;
+							const to   = t.getBoundingClientRect().top;
+							if (to < from) outIsUp[0] = true;
+						}
+						return true;
 					}
-					return true;
 				}
 			}
 		}
