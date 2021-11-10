@@ -1,0 +1,14 @@
+/**
+ *
+ * Link Style
+ *
+ * @author Takuto Yanagida
+ * @version 2021-11-10
+ *
+ */
+
+
+@use 'inner';
+
+
+@include inner.style-link-type();

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>nacss-link</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/link.min.css?v144244t">
+<link rel="stylesheet" href="css/style.min.css?v144244t">
+<script src="js/link.min.js?v144244t"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const aua = document.getElementById('url-anchor');
+		aua.href = location.href.replace(location.hash ? location.hash : '#', '') + aua.dataset['href'];
+
+		const as = document.getElementsByTagName('a');
+		window['NACSS'].linkApply(as);
+
+		if (!CSS.supports('scroll-behavior', 'smooth')) {
+			window['NACSS'].linkAnchorScroll(as, { observedSelector: 'main' });
+		}
+
+		setTimeout(() => {
+			const a = document.createElement('a');
+			a.href = '#ex2';
+			a.innerText = 'Dynamically inserted anchor element (Example 2)';
+			const main = document.getElementsByTagName('main')[0];
+			main.insertBefore(a, main.firstElementChild);
+		}, 1000);
+	});
+</script>
+</head>
+
+<body>
+	<header role="banner">
+		<h1><a href="#">Link</a></h1>
+	</header>
+
+	<main>
+		<h2>Styles by DOM structures</h2>
+
+		<dl>
+			<dt>Image Link</dt>
+			<dd>
+				<a href="https://picsum.photos/150/100.jpg" title="Sample image link">
+					<img src="https://picsum.photos/150/100.jpg" width="150" height="100" alt="Sample image">
+				</a>
+			</dd>
+			<dt>Empty Link</dt>
+			<dd><a href="https://google.com"></a></dd>
+			<dt>Simple Link</dt>
+			<dd><a href="inline.html">Inline Styles</a></dd>
+		</dl>
+
+		<h3 id="ex1">Examples 1</h3>
+
+		<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible
+			vermin.
+			<a href="https://google.com" title="Empty link"></a>
+			He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly
+			domed and divided by arches into stiff sections.
+			<a href="inline.html">Simple Link</a>
+			The bedding was hardly able to cover it and seemed ready to slide off any moment.
+			<a href="inline.html">Simple Link (Normal and <sub>subscript</sub> text)</a>
+			His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.
+		</p>
+
+		<h2>Styles by URL</h2>
+
+		<dl>
+			<dt>Anchor Link</dt>
+			<dd><a href="#ex2">Examples 2</a></dd>
+			<dd><a data-href="#ex2" id="url-anchor">Examples 2 (href contains URL)</a></dd>
+			<dd><a href="#">Page Top (hash mark only)</a></dd>
+			<dt>External Link</dt>
+			<dd><a href="https://google.com">Google.com</a></dd>
+			<dt>Simple (Url) Link (& External Link)</dt>
+			<dd><a href="https://google.com">https://google.com</a></dd>
+			<dt>File Link</dt>
+			<dd><a href="pdf.pdf">PDF (.pdf)</a></dd>
+			<dd><a href="word.doc">Word File (.doc, .docx)</a></dd>
+			<dd><a href="excel.xls">Excel File (.xls, .xlsx)</a></dd>
+			<dd><a href="powerpoint.ppt">PowerPoint File (.ppt, .pptx)</a></dd>
+		</dl>
+
+		<div class="blank"></div>
+
+		<h3 id="ex2">Examples 2</h3>
+
+		<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible
+			vermin.
+			<a href="inline.html">Simple Link (Normal and <sub>subscript</sub> text)</a>
+			He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly
+			domed and divided by arches into stiff sections.
+			<a href="#ex1">Anchor Link (Example 1)</a>
+			The bedding was hardly able to cover it and seemed ready to slide off any moment.
+			<a href="https://google.com">External Link</a>
+			His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.
+		</p>
+
+		<div class="blank"></div>
+	</main>
+
+</body>
+</html>
