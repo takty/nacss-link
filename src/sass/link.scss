@@ -8,7 +8,7 @@
  */
 
 
-@use 'inner';
+@use 'type';
 
 
-@include inner.style-link-type();
+@include type.style-link-type();
