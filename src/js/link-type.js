@@ -3,7 +3,7 @@
  * Link Style - Type (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-11-10
+ * @version 2021-11-11
  *
  */
 
@@ -22,7 +22,7 @@ window['NACSS'] = window['NACSS'] || {};
 		NS.linkIsLinkImage = isLinkImage;
 	})();
 
-	// @include _utility.js
+	// @include _style-class.js
 	// @include _common.js
 
 })(window['NACSS']);
