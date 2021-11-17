@@ -1,6 +1,6 @@
 /**
  *
- * Link Style (JS)
+ * Link
  *
  * @author Takuto Yanagida
  * @version 2021-11-11
@@ -18,7 +18,6 @@ window['NACSS'] = window['NACSS'] || {};
 		NS.linkApply      = apply;
 		NS.linkApplyByUrl = applyByUrl;
 
-		// Export the function
 		NS.linkIsLinkImage = isLinkImage;
 	})();
 
@@ -26,7 +25,6 @@ window['NACSS'] = window['NACSS'] || {};
 		// @include _anchor.js
 		NS.linkAnchorScroll = initialize;
 
-		// Export the function
 		NS.smoothScrollToElement = smoothScrollToElement;
 	})();
 

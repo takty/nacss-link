@@ -1,6 +1,6 @@
 /**
  *
- * Link Style - Anchor (JS)
+ * Link - Anchor Scroll
  *
  * @author Takuto Yanagida
  * @version 2021-11-11

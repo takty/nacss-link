@@ -1,6 +1,6 @@
 /**
  *
- * Anchor Scroll (JS)
+ * Anchor Scroll
  *
  * @author Takuto Yanagida
  * @version 2021-11-10

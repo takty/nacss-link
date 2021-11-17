@@ -1,6 +1,6 @@
 /**
  *
- * Link Type (JS)
+ * Type
  *
  * @author Takuto Yanagida
  * @version 2021-11-10
