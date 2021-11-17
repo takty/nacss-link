@@ -22,6 +22,10 @@ header {
 	backdrop-filter : blur(4px);
 }
 
+main {
+	margin-top: 2rem;
+}
+
 div.large-blank {
 	height: 75vh;
 	background-image: repeating-linear-gradient(-45deg, transparent, transparent 6px, #defa 6px, #defa 12px);
