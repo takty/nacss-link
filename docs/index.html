@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>nacss-link</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/link.min.css?v110552t">
-<link rel="stylesheet" href="css/style.min.css?v110552t">
-<script src="js/link.min.js?v110552t"></script>
+<link rel="stylesheet" href="css/link.min.css?v154205t">
+<link rel="stylesheet" href="css/style.min.css?v154205t">
+<script src="js/link.min.js?v154205t"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const aua = document.getElementById('url-anchor');
@@ -25,14 +25,15 @@
 			a.innerText = 'Dynamically inserted anchor element (Example 2)';
 			const main = document.getElementsByTagName('main')[0];
 			main.insertBefore(a, main.firstElementChild);
-		}, 1000);
+		}, 2000);
 	});
 </script>
 </head>
 
 <body>
-	<header role="banner">
-		<h1><a href="#">Link</a></h1>
+	<header>
+		<h1>Link</h1>
+		<nav><a href="#top">Scroll Back To Top</a></nav>
 	</header>
 
 	<main>

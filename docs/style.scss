@@ -8,14 +8,14 @@ html {
 header,
 main {
 	margin-inline: auto;
-	width : min(calc(100% - 2vw), 48rem);
+	width        : min(calc(100% - 2vw), 48rem);
 }
 
 header {
-	position: sticky;
-	top     : 0;
-	z-index : 1;
-	height  : 6rem;
+	position  : sticky;
+	top       : 0;
+	z-index   : 1;
+	min-height: 6rem;
 
 	border          : 1px solid #ddd;
 	background-color: rgba(#fff, 0.5);
