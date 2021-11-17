@@ -1,53 +1,64 @@
 /**
  *
- * Link Style (SCSS)
+ * Type
  *
  * @author Takuto Yanagida
- * @version 2021-11-10
+ * @version 2021-11-17
  *
  */
 
 
-@mixin style-link-type {
-	a:where(:not([class])) {
-		&[data-nc-link-image] {
-			display: inline-flex;
-			vertical-align: middle;
-		}
-		&[href ^= 'http']:empty::before {  // Show URL instead of empty text
-			content   : attr(href);
-			word-break: break-all;
-			display   : inline;
-		}
-		&[data-nc-link-simple='url'] {
-			word-wrap: break-word;
-		}
+@mixin main {
+	&[data-nc-link-image] {
+		display: inline-flex;
+		vertical-align: middle;
+	}
+	&[href ^= 'http']:empty::before {  // Show URL instead of empty text
+		content   : attr(href);
+		word-break: break-all;
+		display   : inline;
+	}
+	&[data-nc-link-simple='url'] {
+		word-wrap: break-word;
+	}
+}
 
-		&[data-nc-link-anchor]::after,
-		&[data-nc-link-external]::after {
-			display    : inline-block;
-			margin-left: 0.25em;
-			line-height: 1em;
-			width      : 0.85em;
-			height     : 1em;
-		}
-		&[data-nc-link-anchor = 'up']::after { content: '\2794'; transform: rotate(-90deg); }
-		&[data-nc-link-anchor = '']::after   { content: '\2794'; transform: rotate( 90deg); }
-		&[data-nc-link-external]::after      { content: '\2794'; transform: rotate(-45deg); }
+@mixin custom-property-direction {
+	--nc-link-arrow-char: '\2794';
+}
 
-		&[data-nc-link-file]::after {
-			content       : attr(data-nc-link-file);
-			text-transform: uppercase;
+@mixin direction {
+	&[data-nc-link-anchor]::after,
+	&[data-nc-link-external]::after {
+		display    : inline-block;
+		margin-left: 0.25em;
+		line-height: 1em;
+		width      : 0.85em;
+		height     : 1em;
+	}
+	&[data-nc-link-anchor = 'up']::after { content: var(--nc-link-arrow-char); transform: rotate(-90deg); }
+	&[data-nc-link-anchor = '']::after   { content: var(--nc-link-arrow-char); transform: rotate( 90deg); }
+	&[data-nc-link-external]::after      { content: var(--nc-link-arrow-char); transform: rotate(-45deg); }
+}
 
-			display      : inline-block;
-			margin-left  : 0.5em;
-			font-size    : 75%;
-			padding      : 0.2em 0.5em 0.125em;
-			border-radius: 0.35em;
-			line-height  : 1;
+@mixin custom-property-file {
+	--nc-link-file-color     : #fff;
+	--nc-link-file-background: #777;
+}
 
-			color           : #fff;
-			background-color: #777;
-		}
+@mixin file {
+	&[data-nc-link-file]::after {
+		content       : attr(data-nc-link-file);
+		text-transform: uppercase;
+
+		display      : inline-block;
+		margin-left  : 0.5em;
+		font-size    : 75%;
+		padding      : 0.2em 0.5em 0.125em;
+		border-radius: 0.35em;
+		line-height  : 1;
+
+		color     : var(--nc-link-file-color);
+		background: var(--nc-link-file-background);
 	}
 }
