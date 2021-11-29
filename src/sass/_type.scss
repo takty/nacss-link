@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-11-17
+ * @version 2021-11-29
  *
  */
 
@@ -31,7 +31,7 @@
 	&[data-nc-link-anchor]::after,
 	&[data-nc-link-external]::after {
 		display    : inline-block;
-		margin-left: 0.25em;
+		margin-left: 0.15em;
 		line-height: 1em;
 		width      : 0.85em;
 		height     : 1em;
@@ -42,8 +42,9 @@
 }
 
 @mixin custom-property-file {
-	--nc-link-file-color     : #fff;
-	--nc-link-file-background: #777;
+	--nc-link-file-color             : Canvas;
+	--nc-link-file-background        : LinkText;
+	--nc-link-file-visited-background: VisitedText;
 }
 
 @mixin file {
@@ -60,5 +61,8 @@
 
 		color     : var(--nc-link-file-color);
 		background: var(--nc-link-file-background);
+	}
+	&[data-nc-link-file]:visited::after {
+		background: var(--nc-link-file-visited-background);
 	}
 }
