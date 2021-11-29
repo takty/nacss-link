@@ -11,7 +11,7 @@
 @use 'type';
 
 
-:where(html) {
+:root {
 	@include type.custom-property-direction;
 	@include type.custom-property-file;
 }
