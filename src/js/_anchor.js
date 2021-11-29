@@ -3,7 +3,7 @@
  * Anchor Scroll
  *
  * @author Takuto Yanagida
- * @version 2021-11-10
+ * @version 2021-11-29
  *
  */
 
@@ -68,7 +68,7 @@ function doClick(e, opts) {
 function smoothScrollToHash(e, hash, duration = DURATION) {
 	const top = (hash === null || hash === '' || hash === '#' || hash === '#top');
 	const tar = top ? document.documentElement : document.getElementById(hash.substring(1));
-	if (tar) {
+	if (tar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		e.stopPropagation();
 		e.preventDefault();
 
@@ -78,6 +78,10 @@ function smoothScrollToHash(e, hash, duration = DURATION) {
 		}
 	}
 }
+
+
+// -----------------------------------------------------------------------------
+
 
 function smoothScrollToElement(tar, duration = DURATION, focus = true) {
 	const start = window.pageYOffset;
@@ -90,7 +94,7 @@ function smoothScrollToElement(tar, duration = DURATION, focus = true) {
 
 	function loop(time) {
 		if (!isScrolling) return;
-		if (wh !== document.documentElement.offsetHeight) {  // For lazy loading
+		if (wh !== document.documentElement.offsetHeight) {  // For delay loading
 			posY = getScrollPos(tar);
 			wh   = document.documentElement.offsetHeight;
 		}
