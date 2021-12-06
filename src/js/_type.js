@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-11-10
+ * @version 2021-12-06
  *
  */
 
@@ -68,7 +68,7 @@ const EXT_TABLE = {
 
 
 function addClass(a, url, opts) {
-	if (isLinkImage(a)) {
+	if (isLinkImage(a, opts)) {
 		setClass(a, opts.styleLinkImage);
 	} else {
 		if (isLinkEmpty(a)) {
