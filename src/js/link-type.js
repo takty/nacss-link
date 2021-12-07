@@ -3,7 +3,7 @@
  * Link - Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-06
+ * @version 2021-12-07
  *
  */
 
@@ -24,7 +24,7 @@ window['NACSS'] = window['NACSS'] || {};
 		NS.linkIsLinkImage = isLinkImage;
 	}
 
-	// @include _style-class.js
 	// @include _common.js
+	// @include _style-class.js
 
 })(window['NACSS']);
