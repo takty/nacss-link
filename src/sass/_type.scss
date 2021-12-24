@@ -10,7 +10,7 @@
 
 @mixin main {
 	&[data-nc-link-image] {
-		display: inline-flex;
+		display       : inline-flex;
 		vertical-align: middle;
 	}
 	&[href ^= 'http']:empty::before {  // Show URL instead of empty text
@@ -63,6 +63,11 @@
 
 		color     : var(--nc-link-file-color);
 		background: var(--nc-link-file-background);
+
+		// For canceling 'direction'
+		width    : unset;
+		height   : unset;
+		transform: none;
 	}
 	&[data-nc-link-file]:visited::after {
 		background: var(--nc-link-file-visited-background);
