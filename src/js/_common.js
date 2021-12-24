@@ -3,7 +3,7 @@
  * Common Functions
  *
  * @author Takuto Yanagida
- * @version 2021-11-10
+ * @version 2021-12-24
  *
  */
 
@@ -32,4 +32,23 @@ function isUrlAnchor(url, a = null, outIsUp = null) {
 		}
 	}
 	return false;
+}
+
+function observeAdded(os, fn) {
+	if (!os.length) return;
+	const mo = new MutationObserver(rs => {
+		for (const r of rs) {
+			for (const n of r.addedNodes) {
+				if (n.nodeType === 1 && n.tagName === 'A') {
+					fn(n);
+				}
+			}
+		}
+	});
+	for (const o of os) {
+		mo.observe(o, {
+			childList: true,
+			subtree  : true,
+		});
+	}
 }

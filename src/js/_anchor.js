@@ -3,7 +3,7 @@
  * Anchor Scroll
  *
  * @author Takuto Yanagida
- * @version 2021-11-29
+ * @version 2021-12-24
  *
  */
 
@@ -25,24 +25,8 @@ function initialize(as, opts = {}) {
 	document.addEventListener('wheel', () => { isScrolling = false; });
 
 	if (opts['observedSelector']) {
-		const oes = document.querySelectorAll(opts['observedSelector']);
-		if (oes.length) {
-			const mo = new MutationObserver(rs => {
-				for (const r of rs) {
-					for (const n of r.addedNodes) {
-						if (n.nodeType === 1 && n.tagName === 'A') {
-							apply(n, opts);
-						}
-					}
-				}
-			});
-			for (const oe of oes) {
-				mo.observe(oe, {
-					childList: true,
-					subtree  : true,
-				});
-			}
-		}
+		const os = document.querySelectorAll(opts['observedSelector']);
+		observeAdded(os, o => apply(o, opts));
 	}
 }
 

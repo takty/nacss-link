@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-06
+ * @version 2021-12-24
  *
  */
 
@@ -18,11 +18,13 @@ function apply(as, opts = {}) {
 		allowedClasses   : ALLOWED_CLASSES,
 		extensionTable   : EXT_TABLE,
 		isUrlExternal    : isUrlExternal,
+		observedSelector : null,
 	}, opts);
 
 	for (const a of as) {
 		addClass(a, a.getAttribute('href'), opts);
 	}
+	initializeObservation(opts);
 }
 
 function applyByUrl(as, opts = {}) {
@@ -32,11 +34,13 @@ function applyByUrl(as, opts = {}) {
 		styleLinkFile    : ':ncLinkFile',
 		extensionTable   : EXT_TABLE,
 		isUrlExternal    : isUrlExternal,
+		observedSelector : null,
 	}, opts);
 
 	for (const a of as) {
 		addClassByUrl(a, a.getAttribute('href'), opts);
 	}
+	initializeObservation(opts);
 }
 
 const ALLOWED_CLASSES = [
@@ -66,6 +70,17 @@ const EXT_TABLE = {
 
 // -------------------------------------------------------------------------
 
+
+const observing = [];
+
+function initializeObservation(opts) {
+	const sel = opts['observedSelector'];
+	if (sel && !observing.includes(sel)) {
+		observing.push(sel);
+		const os = document.querySelectorAll(sel);
+		observeAdded(os, o => addClassByUrl(o, o.getAttribute('href'), opts));
+	}
+}
 
 function addClass(a, url, opts) {
 	if (isLinkImage(a, opts)) {
@@ -156,7 +171,7 @@ function isUrlExternal(url) {
 }
 
 function getFileType(url, extTab) {
-	if (url !== null && url !== '' && !url.endsWith('/')) {
+	if (url !== null && url !== '' && !url.endsWith('/') && !url.includes('#')) {
 		const d = url.indexOf('//');
 		if (d !== -1) {
 			const s = url.indexOf('/', d + 2);
