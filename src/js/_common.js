@@ -3,9 +3,21 @@
  * Common Functions
  *
  * @author Takuto Yanagida
- * @version 2021-12-24
+ * @version 2021-12-26
  *
  */
+
+
+function initialize(sel, opts = {}) {
+	const as = document.querySelectorAll(sel);
+	NS.applyType(as, opts);
+	if (!CSS.supports('scroll-behavior', 'smooth')) {
+		NS.applySmooth(as, opts);
+	}
+}
+
+
+// -----------------------------------------------------------------------------
 
 
 function isUrlAnchor(url, a = null, outIsUp = null) {
@@ -34,7 +46,7 @@ function isUrlAnchor(url, a = null, outIsUp = null) {
 	return false;
 }
 
-function observeAdded(os, fn) {
+function observeAddition(os, fn) {
 	if (!os.length) return;
 	const mo = new MutationObserver(rs => {
 		for (const r of rs) {

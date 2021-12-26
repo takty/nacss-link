@@ -1,30 +1,29 @@
 /**
  *
- * Link - Type
+ * Link - Anchor Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-07
+ * @version 2021-12-26
  *
  */
 
 
 'use strict';
 
-window['NACSS'] = window['NACSS'] || {};
+window['NACSS']         = window['NACSS']         || {};
+window['NACSS']['link'] = window['NACSS']['link'] || {};
 
 
-(function (NS) {
+((NS) => {
 
-	{
-		// @include _type.js
-		NS.linkApply      = apply;
-		NS.linkApplyByUrl = applyByUrl;
+	// @include __style-class.js
 
-		// Export the function
-		NS.linkIsLinkImage = isLinkImage;
-	}
+	// @include _type.js
+	NS.applyType      = apply;
+	NS.applyTypeByUrl = applyByUrl;
+
+	NS.isImageLink = isImageLink;
 
 	// @include _common.js
-	// @include _style-class.js
 
-})(window['NACSS']);
+})(window['NACSS']['link']);

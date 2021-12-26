@@ -1,9 +1,9 @@
 /**
  *
- * Anchor Scroll
+ * Smooth Scroll
  *
  * @author Takuto Yanagida
- * @version 2021-12-24
+ * @version 2021-12-26
  *
  */
 
@@ -13,24 +13,28 @@ const DURATION = 400;
 let isScrolling = false;
 const anchorWithListener = new Set();
 
-function initialize(as, opts = {}) {
+function apply(as, opts = {}) {
 	opts = Object.assign({
 		duration        : DURATION,
 		observedSelector: null,
 	}, opts);
 
 	for (const a of as) {
-		apply(a, opts);
+		addListener(a, opts);
 	}
 	document.addEventListener('wheel', () => { isScrolling = false; });
 
 	if (opts['observedSelector']) {
 		const os = document.querySelectorAll(opts['observedSelector']);
-		observeAdded(os, o => apply(o, opts));
+		observeAddition(os, o => addListener(o, opts));
 	}
 }
 
-function apply(a, opts) {
+
+// -----------------------------------------------------------------------------
+
+
+function addListener(a, opts) {
 	if (!anchorWithListener.has(a)) {
 		function onClick(e) { doClick(e, opts); }
 		if (a.href === '#' || a.href === '#top' || isUrlAnchor(a.href)) {

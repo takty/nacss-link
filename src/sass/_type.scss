@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-11-29
+ * @version 2021-12-26
  *
  */
 
@@ -23,7 +23,7 @@
 	}
 }
 
-@mixin custom-property-direction {
+@mixin property-direction {
 	--nc-link-arrow-char: '\2794';
 }
 
@@ -42,7 +42,7 @@
 	&[data-nc-link-external]::after      { content: var(--nc-link-arrow-char); transform: rotate(-45deg); }
 }
 
-@mixin custom-property-file {
+@mixin property-file {
 	--nc-link-file-color             : Canvas;
 	--nc-link-file-background        : LinkText;
 	--nc-link-file-visited-background: VisitedText;

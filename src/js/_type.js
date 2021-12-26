@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-24
+ * @version 2021-12-26
  *
  */
 
@@ -78,19 +78,19 @@ function initializeObservation(opts) {
 	if (sel && !observing.includes(sel)) {
 		observing.push(sel);
 		const os = document.querySelectorAll(sel);
-		observeAdded(os, o => addClassByUrl(o, o.getAttribute('href'), opts));
+		observeAddition(os, o => addClassByUrl(o, o.getAttribute('href'), opts));
 	}
 }
 
 function addClass(a, url, opts) {
-	if (isLinkImage(a, opts)) {
+	if (isImageLink(a, opts)) {
 		setClass(a, opts.styleLinkImage);
 	} else {
-		if (isLinkEmpty(a)) {
+		if (isEmptyLink(a)) {
 			addClassByUrl(a, url, opts);
-		} else if (isLinkSimple(a)) {
+		} else if (isSimpleLink(a)) {
 			setClass(a, opts.styleLinkSimple);
-			if (isLinkSimpleUrl(a, url)) {
+			if (isSimpleUrlLink(a, url)) {
 				setClass(a, opts.styleLinkSimple, true, 'url');
 			}
 			addClassByUrl(a, url, opts);
@@ -98,7 +98,7 @@ function addClass(a, url, opts) {
 	}
 }
 
-function isLinkImage(a, opts) {
+function isImageLink(a, opts) {
 	if (a.className) {
 		for (const c of a.className.split(' ')) {
 			if (!opts.allowedClasses.includes(c)) return false;
@@ -118,7 +118,7 @@ function isLinkImage(a, opts) {
 	return ok;
 }
 
-function isLinkSimple(a) {
+function isSimpleLink(a) {
 	if (a.className) return false;
 	const cs = a.childNodes;
 	if (cs.length === 0) return false;
@@ -133,11 +133,11 @@ function isLinkSimple(a) {
 	return true;
 }
 
-function isLinkEmpty(a) {
+function isEmptyLink(a) {
 	return !a.className && a.childNodes.length === 0;
 }
 
-function isLinkSimpleUrl(a, url) {
+function isSimpleUrlLink(a, url) {
 	return url !== null && url !== '' && a.childNodes.length && a.innerHTML.trim() === url;
 }
 

@@ -1,23 +1,20 @@
 /**
  *
- * Link
+ * Link Style
  *
  * @author Takuto Yanagida
- * @version 2021-11-29
+ * @version 2021-12-26
  *
  */
 
 
-@use 'type';
+@use '_link';
 
 
 :root {
-	@include type.custom-property-direction;
-	@include type.custom-property-file;
+	@include link.property;
 }
 
 a:where(:not([class])) {
-	@include type.main;
-	@include type.direction;
-	@include type.file;
+	@include link.all;
 }
