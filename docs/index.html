@@ -4,20 +4,13 @@
 <meta charset="utf-8">
 <title>nacss-link</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/link.min.css?v233737t">
-<link rel="stylesheet" href="css/style.min.css?v233737t">
-<script src="js/link.min.js?v233737t"></script>
+<link rel="stylesheet" href="css/link.min.css?v221853t">
+<link rel="stylesheet" href="css/style.min.css?v221853t">
+<script src="js/link.min.js?v221853t"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const aua = document.getElementById('url-anchor');
 		aua.href = location.href.replace(location.hash ? location.hash : '#', '') + aua.dataset['href'];
-
-		const as = document.getElementsByTagName('a');
-		window['NACSS'].linkApply(as);
-
-		if (!CSS.supports('scroll-behavior', 'smooth')) {
-			window['NACSS'].linkAnchorScroll(as, { observedSelector: 'main' });
-		}
 
 		setTimeout(() => {
 			const a = document.createElement('a');
@@ -26,6 +19,8 @@
 			const main = document.getElementsByTagName('main')[0];
 			main.insertBefore(a, main.firstElementChild);
 		}, 2000);
+
+		window['NACSS'].link.initialize('a', { observedSelector: 'main' });
 	});
 </script>
 </head>
@@ -81,6 +76,11 @@
 			<dd><a href="word.doc">Word File (.doc, .docx)</a></dd>
 			<dd><a href="excel.xls">Excel File (.xls, .xlsx)</a></dd>
 			<dd><a href="powerpoint.ppt">PowerPoint File (.ppt, .pptx)</a></dd>
+			<dt>File Link (External Link)</dt>
+			<dd><a href="https://example.com/pdf.pdf">PDF (.pdf)</a></dd>
+			<dd><a href="https://example.com/word.doc">Word File (.doc, .docx)</a></dd>
+			<dd><a href="https://example.com/excel.xls">Excel File (.xls, .xlsx)</a></dd>
+			<dd><a href="https://example.com/powerpoint.ppt">PowerPoint File (.ppt, .pptx)</a></dd>
 		</dl>
 
 		<div class="large-blank"></div>
@@ -100,6 +100,5 @@
 
 		<div class="large-blank"></div>
 	</main>
-
 </body>
 </html>
