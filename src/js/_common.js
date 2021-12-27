@@ -3,13 +3,12 @@
  * Common Functions
  *
  * @author Takuto Yanagida
- * @version 2021-12-26
+ * @version 2021-12-27
  *
  */
 
 
-function initialize(sel, opts = {}) {
-	const as = document.querySelectorAll(sel);
+function applyAll(as, opts = {}) {
 	NS.applyType(as, opts);
 	if (!CSS.supports('scroll-behavior', 'smooth')) {
 		NS.applySmooth(as, opts);

@@ -3,7 +3,7 @@
  * Link
  *
  * @author Takuto Yanagida
- * @version 2021-12-26
+ * @version 2021-12-27
  *
  */
 
@@ -31,6 +31,6 @@ window['NACSS']['link'] = window['NACSS']['link'] || {};
 		NS.smoothScrollToElement = smoothScrollToElement;
 	}
 	// @include _common.js
-	NS.initialize = initialize;
+	NS.applyAll = applyAll;
 
 })(window['NACSS']['link']);
