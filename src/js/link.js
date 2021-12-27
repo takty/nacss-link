@@ -31,6 +31,5 @@ window['NACSS']['link'] = window['NACSS']['link'] || {};
 		NS.smoothScrollToElement = smoothScrollToElement;
 	}
 	// @include _common.js
-	NS.applyAll = applyAll;
 
 })(window['NACSS']['link']);

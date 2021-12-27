@@ -8,17 +8,6 @@
  */
 
 
-function applyAll(as, opts = {}) {
-	NS.applyType(as, opts);
-	if (!CSS.supports('scroll-behavior', 'smooth')) {
-		NS.applySmooth(as, opts);
-	}
-}
-
-
-// -----------------------------------------------------------------------------
-
-
 function isUrlAnchor(url, a = null, outIsUp = null) {
 	if (url !== null && url !== '') {
 		const p = url.indexOf('#');
