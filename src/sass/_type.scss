@@ -3,15 +3,17 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-26
+ * @version 2021-12-27
  *
  */
 
 
 @mixin main {
 	&[data-nc-link-image] {
-		display       : inline-flex;
-		vertical-align: middle;
+		display: contents;
+		img {
+			vertical-align: middle;
+		}
 	}
 	&[href ^= 'http']:empty::before {  // Show URL instead of empty text
 		content   : attr(href);
