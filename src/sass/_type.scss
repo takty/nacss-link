@@ -28,8 +28,10 @@
 @mixin property-direction {
 	--nc-link-direction-color: currentColor;
 
-	--nc-link-direction-path-anchor  : polygon(43% 6%, 43% 70%, 25% 67%, 50% 95%, 75% 67%, 57% 70%, 57% 6%);
-	--nc-link-direction-path-external: polygon(15% 55%, 15% 85%, 45% 85%, 45% 65%, 35% 65%, 40% 60%, 50% 60%, 72% 38%, 82% 52%, 85% 15%, 48% 18%, 62% 28%, 40% 50%, 40% 60%, 35% 65%, 35% 55%);
+	--nc-link-direction-path-anchor  : polygon(43% 10%, 43% 64%, 25% 61%, 50% 89%, 75% 61%, 57% 64%, 57% 10%);
+	--nc-link-direction-path-external: polygon(6% 50%, 50% 94%, 66% 78%, 58% 70%, 50% 78%, 22% 50%,
+		43% 50%, 43% 57%, 72% 57%, 70% 72%, 96% 50%, 70% 28%, 72% 43%, 43% 43%, 43% 50%,
+		22% 50%, 50% 22%, 58% 30%, 66% 22%, 50% 6%);
 }
 
 @mixin direction {
