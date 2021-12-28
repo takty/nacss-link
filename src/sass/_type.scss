@@ -25,6 +25,10 @@
 	}
 }
 
+
+// -----------------------------------------------------------------------------
+
+
 @mixin property-direction {
 	--nc-link-direction-color: currentColor;
 
@@ -37,21 +41,29 @@
 @mixin direction {
 	&[data-nc-link-anchor]::after,
 	&[data-nc-link-external]::after {
-		content: '';
-		display: inline-block;
-		width  : 1em;
-		height : 1em;
-
-		line-height   : 1;
-		vertical-align: middle;
-
-		background-color: var(--nc-link-direction-color);
-		color-adjust    : exact;  // For print
+		@include direction-inner;
 	}
 	&[data-nc-link-anchor]::after        { clip-path: var(--nc-link-direction-path-anchor); }
 	&[data-nc-link-anchor = 'up']::after { transform: scaleY(-1); }
 	&[data-nc-link-external]::after      { clip-path: var(--nc-link-direction-path-external); }
 }
+
+@mixin direction-inner {
+	content: '';
+	display: inline-block;
+	width  : 1em;
+	height : 1em;
+
+	line-height   : 1;
+	vertical-align: middle;
+
+	background-color: var(--nc-link-direction-color);
+	color-adjust    : exact;  // For print
+}
+
+
+// -----------------------------------------------------------------------------
+
 
 @mixin property-file {
 	--nc-link-file-color     : Canvas;
@@ -60,25 +72,29 @@
 
 @mixin file {
 	&[data-nc-link-file]::after {
-		content       : attr(data-nc-link-file);
-		text-transform: uppercase;
-
-		display            : inline-block;
-		margin-inline-start: 0.5em;
-
-		padding      : 0.2em 0.5em 0.125em;
-		border-radius: 0.35em;
-		font-size    : 75%;
-		line-height  : 1;
-
-		-webkit-text-fill-color: var(--nc-link-file-color);
-		background-color       : var(--nc-link-file-background);
-		color-adjust           : exact;  // For print
-
-		// For canceling 'direction'
-		width    : unset;
-		height   : unset;
-		clip-path: none;
-		transform: none;
+		@include file-inner;
 	}
+}
+
+@mixin file-inner {
+	content       : attr(data-nc-link-file);
+	text-transform: uppercase;
+
+	display            : inline-block;
+	margin-inline-start: 0.5em;
+
+	padding      : 0.2em 0.5em 0.125em;
+	border-radius: 0.35em;
+	font-size    : 75%;
+	line-height  : 1;
+
+	-webkit-text-fill-color: var(--nc-link-file-color);
+	background-color       : var(--nc-link-file-background);
+	color-adjust           : exact;  // For print
+
+	// For canceling 'direction'
+	width    : unset;
+	height   : unset;
+	clip-path: none;
+	transform: none;
 }
