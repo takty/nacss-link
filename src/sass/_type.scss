@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-28
+ * @version 2022-01-06
  *
  */
 
@@ -55,7 +55,7 @@
 	height : 1em;
 
 	line-height   : 1;
-	vertical-align: middle;
+	vertical-align: -15%;
 
 	background-color: var(--nc-link-direction-color);
 	color-adjust    : exact;  // For print
@@ -86,7 +86,9 @@
 	padding      : 0.2em 0.5em 0.125em;
 	border-radius: 0.35em;
 	font-size    : 75%;
-	line-height  : 1;
+
+	line-height   : 1;
+	vertical-align: 5%;
 
 	-webkit-text-fill-color: var(--nc-link-file-color);
 	background-color       : var(--nc-link-file-background);
