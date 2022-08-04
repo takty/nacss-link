@@ -152,7 +152,8 @@ function addClassByUrl(a, url, opts) {
 	} else if (opts.isUrlExternal(url)) {
 		setClass(a, opts.styleLinkExternal);
 	}
-	const t = getFileType(url, opts.extensionTable);
+	const ext = getFileExtension(url);
+	const t = opts.extensionTable[ext] ?? null;
 	if (t) {
 		setClass(a, opts.styleLinkFile);
 		setClass(a, opts.styleLinkFile, true, t);
@@ -168,11 +169,6 @@ function isUrlExternal(url) {
 		}
 	}
 	return false;
-}
-
-function getFileType(url, extTab) {
-	const ext = getFileExtension(url);
-	return extTab[ext] ?? null;
 }
 
 function getFileExtension(url) {
