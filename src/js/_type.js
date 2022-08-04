@@ -10,15 +10,17 @@
 
 function apply(as, opts = {}) {
 	opts = Object.assign({
-		styleLinkImage   : ':ncLinkImage',
-		styleLinkSimple  : ':ncLinkSimple',
-		styleLinkAnchor  : ':ncLinkAnchor',
-		styleLinkExternal: ':ncLinkExternal',
-		styleLinkFile    : ':ncLinkFile',
-		allowedClasses   : ALLOWED_CLASSES,
-		extensionTable   : EXT_TABLE,
-		isUrlExternal    : isUrlExternal,
-		observedSelector : null,
+		styleLinkImage     : ':ncLinkImage',
+		styleLinkSimple    : ':ncLinkSimple',
+		styleLinkAnchor    : ':ncLinkAnchor',
+		styleLinkExternal  : ':ncLinkExternal',
+		styleLinkFile      : ':ncLinkFile',
+		styleLinkToImage   : ':ncLinkToImage',
+		allowedClasses     : ALLOWED_CLASSES,
+		fileExtensionTable : FILE_EXT_TABLE,
+		imageExtensionTable: IMG_EXT_TABLE,
+		isUrlExternal      : isUrlExternal,
+		observedSelector   : null,
 	}, opts);
 
 	for (const a of as) {
@@ -29,12 +31,14 @@ function apply(as, opts = {}) {
 
 function applyByUrl(as, opts = {}) {
 	opts = Object.assign({
-		styleLinkAnchor  : ':ncLinkAnchor',
-		styleLinkExternal: ':ncLinkExternal',
-		styleLinkFile    : ':ncLinkFile',
-		extensionTable   : EXT_TABLE,
-		isUrlExternal    : isUrlExternal,
-		observedSelector : null,
+		styleLinkAnchor    : ':ncLinkAnchor',
+		styleLinkExternal  : ':ncLinkExternal',
+		styleLinkFile      : ':ncLinkFile',
+		styleLinkToImage   : ':ncLinkToImage',
+		fileExtensionTable : FILE_EXT_TABLE,
+		imageExtensionTable: IMG_EXT_TABLE,
+		isUrlExternal      : isUrlExternal,
+		observedSelector   : null,
 	}, opts);
 
 	for (const a of as) {
@@ -57,14 +61,21 @@ const ALLOWED_CLASSES = [
 	'size-full'
 ];
 
-const EXT_TABLE = {
+const FILE_EXT_TABLE = {
 	doc : 'doc',
 	docx: 'doc',
 	xls : 'xls',
 	xlsx: 'xls',
 	ppt : 'ppt',
 	pptx: 'ppt',
-	pdf : 'pdf'
+	pdf : 'pdf',
+};
+
+const IMG_EXT_TABLE = {
+	jpeg: 'jpg',
+	jpg : 'jpg',
+	png : 'png',
+	gif : 'gif',
 };
 
 
@@ -85,6 +96,11 @@ function initializeObservation(opts) {
 function addClass(a, url, opts) {
 	if (isImageLink(a, opts)) {
 		setClass(a, opts.styleLinkImage);
+		const ti = opts.imageExtensionTable[getFileExtension(url)] ?? null;
+		if (ti) {
+			setClass(a, opts.styleLinkToImage);
+			setClass(a, opts.styleLinkToImage, true, ti);
+		}
 	} else {
 		if (isEmptyLink(a)) {
 			addClassByUrl(a, url, opts);
@@ -152,11 +168,16 @@ function addClassByUrl(a, url, opts) {
 	} else if (opts.isUrlExternal(url)) {
 		setClass(a, opts.styleLinkExternal);
 	}
-	const ext = getFileExtension(url);
-	const t = opts.extensionTable[ext] ?? null;
-	if (t) {
+	const ex = getFileExtension(url);
+	const tf = opts.fileExtensionTable[ex]  ?? null;
+	const ti = opts.imageExtensionTable[ex] ?? null;
+	if (tf) {
 		setClass(a, opts.styleLinkFile);
-		setClass(a, opts.styleLinkFile, true, t);
+		setClass(a, opts.styleLinkFile, true, tf);
+	}
+	if (ti) {
+		setClass(a, opts.styleLinkToImage);
+		setClass(a, opts.styleLinkToImage, true, ti);
 	}
 }
 
