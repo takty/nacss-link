@@ -3,7 +3,7 @@
  * Type
  *
  * @author Takuto Yanagida
- * @version 2021-12-26
+ * @version 2022-08-05
  *
  */
 
@@ -171,16 +171,29 @@ function isUrlExternal(url) {
 }
 
 function getFileType(url, extTab) {
-	if (url !== null && url !== '' && !url.endsWith('/') && !url.includes('#')) {
-		const d = url.indexOf('//');
-		if (d !== -1) {
-			const s = url.indexOf('/', d + 2);
-			url = (s === -1) ? '' : url.substring(s + 1);
+	const ext = getFileExtension(url);
+	return extTab[ext] ?? null;
+}
+
+function getFileExtension(url) {
+	if (url) {
+		const b0 = url.indexOf('//');
+		if (b0 !== -1) {
+			const b1 = url.indexOf('/', b0 + 2);
+			url = (b1 !== -1) ? url.substring(b1 + 1) : '';
 		}
-		const p = url.lastIndexOf('.');
-		if (p !== -1) {
-			const ext = url.substring(p + 1).toLowerCase();
-			return extTab[ext] ?? null;
+		const e0 = url.indexOf('?');
+		if (e0 !== -1) url = url.substring(0, e0);
+		const e1 = url.indexOf('#');
+		if (e1 !== -1) url = url.substring(0, e1);
+
+		if (!url.endsWith('/')) {
+			const last = url.split('/').pop();
+
+			const i = last.lastIndexOf('.');
+			if (i !== -1) {
+				return last.substring(i + 1).toLowerCase();
+			}
 		}
 	}
 	return null;
