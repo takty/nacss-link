@@ -3,7 +3,7 @@
  * Smooth Scroll
  *
  * @author Takuto Yanagida
- * @version 2021-12-26
+ * @version 2023-07-18
  *
  */
 
@@ -72,7 +72,7 @@ function smoothScrollToHash(e, hash, duration = DURATION) {
 
 
 function smoothScrollToElement(tar, duration = DURATION, focus = true) {
-	const start = window.pageYOffset;
+	const start = window.scrollY;
 	let posY = getScrollPos(tar);
 	let wh   = document.documentElement.offsetHeight;
 
@@ -102,7 +102,7 @@ function smoothScrollToElement(tar, duration = DURATION, focus = true) {
 
 function getScrollPos(tar) {
 	const spt = parseInt(getComputedStyle(document.documentElement).scrollPaddingTop);
-	return tar.getBoundingClientRect().top + window.pageYOffset - spt;
+	return tar.getBoundingClientRect().top + window.scrollY - spt;
 }
 
 function easing(t, b, c, d) {
